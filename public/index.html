@@ -9,23 +9,23 @@
 <body>
   <main class="container">
     <h1>Presupuestador</h1>
-    <form id="presupuesto-form" action="/" method="POST">
+    <form id="presupuesto-form">
       <div class="inputs">
         <label>
           Empresa:
-          <input type="text" id="empresa" name="empresa" value="Nombre de cliente" required>
+          <input type="text" id="empresa" value="Nombre de cliente" required>
         </label>
         <label>
           CUIT:
-          <input type="text" id="cuit" name="cuit" value="00-00000000-0" required>
+          <input type="text" id="cuit" value="00-00000000-0" required>
         </label>
         <label>
           Fecha de emisión:
-          <input type="date" id="fecha" name="fecha" required>
+          <input type="date" id="fecha" required>
         </label>
         <label>
           Condiciones de pago:
-          <input type="text" id="condiciones" name="condiciones" value="Contado" required>
+          <input type="text" id="condiciones" value="Contado" required>
         </label>
       </div>
       <table id="productos-table">
@@ -38,7 +38,6 @@
           </tr>
         </thead>
         <tbody id="productos-tbody">
-          <!-- Filas dinámicas -->
         </tbody>
       </table>
       <button type="button" id="agregar-producto">+ Agregar producto</button>
