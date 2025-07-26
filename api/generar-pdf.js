@@ -1,5 +1,4 @@
 const PDFDocument = require('pdfkit');
-const stream = require('stream');
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -7,14 +6,17 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { empresa, cuit, fecha, condiciones, productos } = req.body;
+  // Asegura que parseamos JSON
+  let data = req.body;
+  if (typeof data === "string") data = JSON.parse(data);
+
+  const { empresa, cuit, fecha, condiciones, productos } = data;
 
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', `attachment; filename="presupuesto_${Date.now()}.pdf"`);
 
   const doc = new PDFDocument();
 
-  // Pasamos el pdfkit a un buffer que se puede enviar como respuesta
   const buffers = [];
   doc.on('data', buffers.push.bind(buffers));
   doc.on('end', () => {
@@ -22,7 +24,6 @@ export default async function handler(req, res) {
     res.status(200).end(pdfBuffer);
   });
 
-  // Generación del PDF igual que antes...
   doc.fontSize(22).text('Presupuesto', { align: 'center' });
   doc.moveDown();
   doc.fontSize(12)
@@ -48,5 +49,6 @@ export default async function handler(req, res) {
 
   doc.moveDown();
   doc.fontSize(14).text(`TOTAL: $${total.toFixed(2)}`, { align: 'right' });
+
   doc.end();
 }
