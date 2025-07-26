@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Presupuestador App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Presupuestador</h1>
+    <form id="presupuesto-form">
+      <div class="inputs">
+        <label>
+          Empresa:
+          <input type="text" id="empresa" value="Nombre de cliente" required>
+        </label>
+        <label>
+          CUIT:
+          <input type="text" id="cuit" value="00-00000000-0" required>
+        </label>
+        <label>
+          Fecha de emisión:
+          <input type="date" id="fecha" required>
+        </label>
+        <label>
+          Condiciones de pago:
+          <input type="text" id="condiciones" value="Contado" required>
+        </label>
+      </div>
+      <table id="productos-table">
+        <thead>
+          <tr>
+            <th>Cant.</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="productos-tbody">
+          <!-- Filas dinámicas -->
+        </tbody>
+      </table>
+      <button type="button" id="agregar-producto">+ Agregar producto</button>
+      <div class="total-box">
+        <span id="total-label">Total: $0.00</span>
+      </div>
+      <button type="submit">Descargar PDF</button>
+    </form>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

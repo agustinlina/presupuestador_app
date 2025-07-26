@@ -1,0 +1,121 @@
+:root {
+  --bg: #181818;
+  --fg: #e0e0e0;
+  --accent: #757575;
+  --border: #282828;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  max-width: 480px;
+  margin: 32px auto;
+  background: #202020;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px #0006;
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+}
+
+h1 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 14px;
+}
+
+form input[type="text"], form input[type="date"] {
+  width: 100%;
+  background: #222;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-top: 3px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  outline: none;
+}
+
+#productos-table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  background: #181818;
+}
+
+#productos-table th, #productos-table td {
+  padding: 6px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+#productos-table th {
+  color: var(--accent);
+  font-weight: 500;
+  background: #222;
+}
+
+#productos-table td:last-child {
+  text-align: center;
+}
+
+#agregar-producto {
+  margin: 12px 0;
+  width: 100%;
+  background: #232323;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 7px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#agregar-producto:hover {
+  background: #252525;
+}
+
+.total-box {
+  margin: 22px 0 12px 0;
+  text-align: right;
+  font-size: 18px;
+  font-weight: 500;
+  color: #eee;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #181818;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #232323;
+}
+
+::-webkit-input-placeholder { color: #666; }
+::-moz-placeholder { color: #666; }
+:-ms-input-placeholder { color: #666; }
+::placeholder { color: #666; }
