@@ -1,18 +1,35 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const PDFDocument = require('pdfkit');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Static files
+// Necesario para parsear los formularios POST (urlencoded)
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
-app.use(bodyParser.json());
 
-// PDF generation endpoint (NO guarda en disco)
-app.post('/api/generar-pdf', (req, res) => {
-  const { empresa, cuit, fecha, condiciones, productos } = req.body;
+// GET principal: muestra la página
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// POST principal: genera el PDF
+app.post('/', (req, res) => {
+  const { empresa, cuit, fecha, condiciones } = req.body;
+  // productos[] viene como 3 arrays paralelos (cantidad[], descripcion[], precio[])
+  // Si solo hay uno, llega como string
+  const cantidades = Array.isArray(req.body.cantidad) ? req.body.cantidad : [req.body.cantidad];
+  const descripciones = Array.isArray(req.body.descripcion) ? req.body.descripcion : [req.body.descripcion];
+  const precios = Array.isArray(req.body.precio) ? req.body.precio : [req.body.precio];
+
+  const productos = cantidades.map((c, i) => ({
+    cantidad: parseFloat(c) || 0,
+    descripcion: descripciones[i] || "",
+    precio: parseFloat(precios[i]) || 0
+  }));
+
   res.setHeader('Content-Disposition', `attachment; filename="presupuesto_${Date.now()}.pdf"`);
   res.setHeader('Content-Type', 'application/pdf');
 
